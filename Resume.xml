@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resume>
+  <name>Homed Rekabdar</name>
+  <contact>
+    <email>homed.rekabdar@gmail.com</email>
+    <phone>(470) 965-1875</phone>
+    <github>https://github.com/HomedRe</github>
+    <linkedin>https://www.linkedin.com/in/homedrekabdar/</linkedin>
+  </contact>
+
+  <summary>
+    Technical Support Specialist with over 2 years of experience in troubleshooting,
+    client support, and application setup. BS in Software Engineering...
+  </summary>
+
+  <experience>
+    <job>
+      <title>Technical Support Specialist - Escalation</title>
+      <company>Carestream Dental</company>
+      <location>Remote</location>
+      <date>June 2023 - Present</date>
+      <duties>
+        <duty>Resolved over 2000 customer support tickets...</duty>
+        <duty>Assisted with installations and configurations...</duty>
+        <duty>Wrote SQL queries to validate data...</duty>
+      </duties>
+    </job>
+  </experience>
+
+  <education>
+    <degree>Bachelor's Degree in Software Engineering</degree>
+    <year>2017-2021</year>
+  </education>
+
+  <skills>
+    <skill>HTML, CSS, JavaScript</skill>
+    <skill>SQL Server</skill>
+    <skill>C, C++, C#, Java</skill>
+  </skills>
+</resume>

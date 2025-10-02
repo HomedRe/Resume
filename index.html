@@ -2,74 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HOMED REKABDAR - Resume</title>
-
-  <!-- Link to external CSS -->
+  <title>Resume - Homed Rekabdar</title>
   <link rel="stylesheet" href="style.css">
-  
 </head>
 <body>
+  <div class="page">
+    <h1 id="name"></h1>
+    <div id="contact"></div>
+    <h2>Professional Summary</h2>
+    <p id="summary"></p>
+    <h2>Experience</h2>
+    <div id="experience"></div>
+    <h2>Education</h2>
+    <div id="education"></div>
+    <h2>Skills</h2>
+    <ul id="skills"></ul>
+  </div>
 
-    <!--
+  <script>
+    // Load XML file
+    fetch('Resume.xml')
+      .then(response => response.text())
+      .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+      .then(data => {
+        // Populate resume fields
+        document.getElementById("name").textContent = data.querySelector("name").textContent;
+        
+        // Contact
+        const contact = data.querySelector("contact");
+        document.getElementById("contact").innerHTML = `
+          Email: <a href="mailto:${contact.querySelector("email").textContent}">${contact.querySelector("email").textContent}</a> | 
+          Phone: ${contact.querySelector("phone").textContent} <br>
+          GitHub: <a href="${contact.querySelector("github").textContent}" target="_blank">${contact.querySelector("github").textContent}</a> | 
+          LinkedIn: <a href="${contact.querySelector("linkedin").textContent}" target="_blank">${contact.querySelector("linkedin").textContent}</a>
+        `;
+        
+        // Summary
+        document.getElementById("summary").textContent = data.querySelector("summary").textContent;
 
-    Thank you for checking out my codes ♥
+        // Experience
+        const jobs = data.querySelectorAll("job");
+        let expHTML = "";
+        jobs.forEach(job => {
+          expHTML += `
+            <h3>${job.querySelector("title").textContent}</h3>
+            <p><em>${job.querySelector("company").textContent} - ${job.querySelector("location").textContent} | ${job.querySelector("date").textContent}</em></p>
+            <ul>
+              ${Array.from(job.querySelectorAll("duty")).map(d => `<li>${d.textContent}</li>`).join("")}
+            </ul>
+          `;
+        });
+        document.getElementById("experience").innerHTML = expHTML;
 
-    -->
+        // Education
+        const edu = data.querySelector("education");
+        document.getElementById("education").innerHTML = `
+          <p><strong>${edu.querySelector("degree").textContent}</strong><br>${edu.querySelector("year").textContent}</p>
+        `;
 
-      
-  <!-- Header -->
-  <h1>Homed Rekabdar</h1>
-  <p>
-    Email: <a href="mailto:homed.rekabdar97@gmail.com">Homed.Rekabdar97@Gmail.com</a> | 
-    Phone: (470) 965-1875
-  </p>
-  <p>
-    GitHub: <a href="https://github.com/HomedRe">github.com/HomedRe</a> | 
-    LinkedIn: <a href="https://www.linkedin.com/in/homedrekabdar/">linkedin.com/in/HomedRekabdar</a>
-  </p>
-
-
-  <!-- Summary -->
-  <h2>Professional Summary</h2>
-  <p>
-    Technical Support Specialist with over 2 years of experience in troubleshooting, client support, 
-    and application setup. Holds a BS in Software Engineering with strong knowledge of software development concepts and lifecycle. Transitioning into Application Support Engineer 
-    roles where I can combine coding expertise with customer-facing support.
-  </p>
-
-
-  <!-- Experience -->
-  <h2>Experience</h2>
-  <h3>Technical Support Specialist - Escalation</h3>
-  <p><em>Carestream Dental - Remote | June 2023 - Present </em></p>
-  <ul>
-    <li>Resolved over 2000 customer support tickets, diagnosed technical issues, and delivered solutions.</li>
-    <li>Assisted with installations, configurations, and security setup.</li>
-    <li>Wrote SQL queries to extract and validate data during issue investigations.</li>
-    <li>Contributed to knowledge base articles and technical documentation to support teammates and junior staff.</li>
-  </ul>
-
-
-  <!-- Education -->
-  <h2>Education</h2>
-  <p>
-    <strong>Bachelors Degree in Software Engineering</strong><br>
-    2017-2021
-  </p>
-
-
-  <!-- Skills -->
-  <h2>Skills</h2>
-  <ul>
-    <li>Expousure to HTML, CSS, JavaScript</li>
-    <li>Knowledge of SQL Server and SQL</li>
-    <li>Background in C, C++, C#, and Java</li>
-    <li>Git & GitHub</li>
-    <li>Troubleshooting & Technical Support</li>
-  </ul>
-
-
+        // Skills
+        const skills = data.querySelectorAll("skill");
+        document.getElementById("skills").innerHTML = Array.from(skills).map(s => `<li>${s.textContent}</li>`).join("");
+      });
+  </script>
 </body>
 </html>
-
-
