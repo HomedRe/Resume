@@ -5,7 +5,7 @@
     <email>homed.rekabdar@gmail.com</email>
     <phone>(470) 965-1875</phone>
     <github>https://github.com/HomedRe</github>
-    <linkedin>https://www.linkedin.com/in/homedrekabdar/</linkedin>
+    <linkedin>https://www.linkedin.com/in/homedrekabdar</linkedin>
   </contact>
 
   <summary>
@@ -20,13 +20,11 @@
   </summary>
 
   <skills>
-    <skill>Tier 1 and 2 support.</skill>
-    <skill>Basic XML, HTML, CSS, and JavaScript.</skill>
-    <skill>SQL and SQL Server (Sybase and MSSQL).</skill>
-    <skill>Exposure to C, C++, C#, Java.</skill>
-    <skill>Documentation and knowledge base creation.</skill>
-    <skill>Problem-solving and communication.</skill>
-    <skill>Working on unknown, new tasks, adaptability.</skill>
+    <skill>Support and Troubleshooting: Tier 1 and 2 support, problem-solving, working on unknown/new tasks (adaptability).</skill>
+    <skill>Database: SQL, SQL Server (Sybase, MSSQL).</skill>
+    <skill>Programming and Web: Basic XML, HTML, CSS, JavaScript; exposure to C, C++, C#, Java.</skill>
+    <skill>Documentation: Knowledge base creation, internal resources.</skill>
+    <skill>Communication and Teamwork: Mentoring peers, cross-team collaboration.</skill>
   </skills>
 
   <experience>
@@ -36,12 +34,12 @@
       <location>Remote</location>
       <date>June 2023 - Present</date>
       <duties>
-        <duty>Resolved nearly 2000 technical support tickets.</duty>
-        <duty>Wrote SQL queries to troubleshoot validate data.</duty>
-        <duty>Pioneered in deployment of new software versions.</duty>
-        <duty>Mentored peers on advanced or uncommon workflows, reducing repeat escalations.</duty>
-        <duty>Contributed to knowledge base articles and internal resources.</duty>
-        <duty>WinOMS v10 updates and migrations: led, documented, and streamlined complex processes.</duty>
+        <duty>Resolved nearly 2,000 technical support tickets, ensuring high client satisfaction and fast issue resolution.</duty>
+        <duty>Performed root cause analysis and validated critical data with SQL queries to prevent errors and support seamless application performance.</duty>
+        <duty>Led deployment of new software versions, collaborating with development teams to prevent post-launch issues.</duty>
+        <duty>Mentored peers on advanced workflows, reducing repeat escalations.</duty>
+        <duty>Authored knowledge base articles and internal resources, improving team efficiency.</duty>
+        <duty>Streamlined and documented WinOMS v9.x (Sybase) to v10.x (MSSQL) migrations and updates.</duty>
       </duties>
     </job>
   </experience>
