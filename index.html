@@ -2,76 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Resume - Homed Rekabdar</title>
+  <title>Resume - Hamed Rekabdar</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page">
+  <div class="page fade-in">
     <h1 id="name"></h1>
     <div id="contact"></div>
+
     <h2>Professional Summary</h2>
     <p id="summary"></p>
+
     <h2>Skills</h2>
     <ul id="skills"></ul>
+
     <h2>Experience</h2>
     <div id="experience"></div>
+
     <h2>Education</h2>
     <div id="education"></div>
-  </div>
-<script>
-  // Load XML file
-  fetch('Resume.xml')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Failed to load Resume.xml");
-      }
-      return response.text();
-    })
-    .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
-    .then(data => {
-      // Populate resume fields
-      document.getElementById("name").textContent = data.querySelector("name").textContent;
-      
-      // Contact
-      const contact = data.querySelector("contact");
-      document.getElementById("contact").innerHTML = `
-        Email: <a href="mailto:${contact.querySelector("email").textContent}">${contact.querySelector("email").textContent}</a> | 
-        Phone: ${contact.querySelector("phone").textContent} <br>
-        GitHub: <a href="${contact.querySelector("github").textContent}" target="_blank">${contact.querySelector("github").textContent}</a> | 
-        LinkedIn: <a href="${contact.querySelector("linkedin").textContent}" target="_blank">${contact.querySelector("linkedin").textContent}</a>
-      `;
-      
-      // Summary
-      document.getElementById("summary").textContent = data.querySelector("summary").textContent;
-      
-      // Skills
-      const skills = data.querySelectorAll("skill");
-      document.getElementById("skills").innerHTML = Array.from(skills).map(s => `<li>${s.textContent}</li>`).join("");
-      
-      // Experience
-      const jobs = data.querySelectorAll("job");
-      let expHTML = "";
-      jobs.forEach(job => {
-        expHTML += `
-          <h3>${job.querySelector("title").textContent}</h3>
-          <p><em>${job.querySelector("company").textContent} - ${job.querySelector("location").textContent} | ${job.querySelector("date").textContent}</em></p>
-          <ul>
-            ${Array.from(job.querySelectorAll("duty")).map(d => `<li>${d.textContent}</li>`).join("")}
-          </ul>
-        `;
-      });
-      document.getElementById("experience").innerHTML = expHTML;
 
-      // Education
-      const edu = data.querySelector("education");
-      document.getElementById("education").innerHTML = `
-        <p><strong>${edu.querySelector("degree").textContent}</strong><br>${edu.querySelector("year").textContent}</p>
-      `;
-    })
-    .catch(err => {
-      console.error("Error loading or parsing Resume.xml:", err);
-      document.querySelector(".page").innerHTML = "<p style='color:red;'>Failed to load resume. Please check the XML file.</p>";
-    });
-</script>
+    <h2>Performance Reviews</h2>
+    <div class="reviews-wrapper">
+      <div id="reviewContainer" class="review-cards"></div>
+      <div id="reviewDetails" class="review-details">
+        <p class="placeholder">Click on a review card to read its details here.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    fetch('Resume.xml')
+      .then(response => {
+        if (!response.ok) throw new Error("Failed to load Resume.xml");
+        return response.text();
+      })
+      .then(str => (new DOMParser()).parseFromString(str, "text/xml"))
+      .then(data => {
+        document.getElementById("name").textContent = data.querySelector("name").textContent.trim();
+        const contact = data.querySelector("contact");
+        document.getElementById("contact").innerHTML = `
+          Email: <a href="mailto:${contact.querySelector("email").textContent.trim()}">${contact.querySelector("email").textContent.trim()}</a> | 
+          Phone: ${contact.querySelector("phone").textContent.trim()} <br>
+          GitHub: <a href="${contact.querySelector("github").textContent.trim()}" target="_blank">${contact.querySelector("github").textContent.trim()}</a> | 
+          LinkedIn: <a href="${contact.querySelector("linkedin").textContent.trim()}" target="_blank">${contact.querySelector("linkedin").textContent.trim()}</a>
+        `;
+        document.getElementById("summary").textContent = data.querySelector("summary").textContent.trim();
+
+        const skills = data.querySelectorAll("skill");
+        document.getElementById("skills").innerHTML =
+          Array.from(skills).map(s => `<li>${s.textContent.trim()}</li>`).join("");
+
+        const jobs = data.querySelectorAll("job");
+        let expHTML = "";
+        jobs.forEach(job => {
+          expHTML += `
+            <h3>${job.querySelector("title").textContent.trim()}</h3>
+            <p><em>${job.querySelector("company").textContent.trim()} - ${job.querySelector("location").textContent.trim()} | ${job.querySelector("date").textContent.trim()}</em></p>
+            <ul>
+              ${Array.from(job.querySelectorAll("duties > duty")).map(d => `<li>${d.textContent.trim()}</li>`).join("")}
+            </ul>
+          `;
+        });
+        document.getElementById("experience").innerHTML = expHTML;
+
+        const edu = data.querySelector("education");
+        document.getElementById("education").innerHTML = `
+          <p><strong>${edu.querySelector("degree").textContent.trim()}</strong><br>${edu.querySelector("year").textContent.trim()}</p>
+        `;
+
+        const reviewContainer = document.getElementById("reviewContainer");
+        const reviewDetails = document.getElementById("reviewDetails");
+        const reviewNodes = data.querySelectorAll("reviews > review");
+
+        reviewNodes.forEach(r => {
+          const card = document.createElement("div");
+          card.className = "review-card";
+          const title = r.textContent.split(":")[0];
+          const text = r.textContent.split(":")[1] ? r.textContent.split(":")[1].trim() : "";
+
+          card.innerHTML = `<strong>${title}</strong>`;
+          card.addEventListener("click", () => {
+            document.querySelectorAll(".review-card").forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+            reviewDetails.innerHTML = `
+              <div class="review-full">
+                <h3>${title}</h3>
+                <p>${text}</p>
+              </div>
+            `;
+          });
+          reviewContainer.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error("Error loading or parsing Resume.xml:", err);
+        document.querySelector(".page").innerHTML = "<p style='color:red;'>Failed to load resume. Please check the XML file.</p>";
+      });
+  </script>
 </body>
 </html>
