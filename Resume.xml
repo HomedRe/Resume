@@ -9,9 +9,25 @@
   </contact>
 
   <summary>
-    Technical Support Specialist with over 2 years of experience in troubleshooting,
-    client support, and application setup. BS in Software Engineering...
+    Technical Support Specialist with over 2 years of experience in troubleshooting, 
+    client support, and application setup. Pioneered the installation of new software 
+    versions and collaborated with the development team to resolve issues during and 
+    after deployment. Skilled in SQL for data analysis, issue resolution, and root 
+    cause analysis. Successfully closed nearly 2,000 support cases while consistently 
+    exceeding performance expectations through top adherence, high call resolution 
+    rates, and strong evaluation scores. Seeking to leverage my technical expertise 
+    and programming background to contribute effectively as an Application Support Engineer.
   </summary>
+
+  <skills>
+    <skill>Tier 1 and 2 support.</skill>
+    <skill>Basic XML, HTML, CSS, and JavaScript.</skill>
+    <skill>SQL and SQL Server (Sybase and MSSQL).</skill>
+    <skill>Exposure to C, C++, C#, Java.</skill>
+    <skill>Documentation and knowledge base creation.</skill>
+    <skill>Problem-solving and communication.</skill>
+    <skill>Working on unknown, new tasks, adaptability.</skill>
+  </skills>
 
   <experience>
     <job>
@@ -20,9 +36,12 @@
       <location>Remote</location>
       <date>June 2023 - Present</date>
       <duties>
-        <duty>Resolved over 2000 customer support tickets...</duty>
-        <duty>Assisted with installations and configurations...</duty>
-        <duty>Wrote SQL queries to validate data...</duty>
+        <duty>Resolved nearly 2000 technical support tickets.</duty>
+        <duty>Wrote SQL queries to troubleshoot validate data.</duty>
+        <duty>Pioneered in deployment of new software versions.</duty>
+        <duty>Mentored peers on advanced or uncommon workflows, reducing repeat escalations.</duty>
+        <duty>Contributed to knowledge base articles and internal resources.</duty>
+        <duty>WinOMS v10 updates and migrations: led, documented, and streamlined complex processes.</duty>
       </duties>
     </job>
   </experience>
@@ -32,9 +51,4 @@
     <year>2017-2021</year>
   </education>
 
-  <skills>
-    <skill>HTML, CSS, JavaScript</skill>
-    <skill>SQL Server</skill>
-    <skill>C, C++, C#, Java</skill>
-  </skills>
 </resume>
