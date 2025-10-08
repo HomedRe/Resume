@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page fade-in">
+  <div class="page">
     <h1 id="name"></h1>
     <div id="contact"></div>
 
@@ -23,10 +23,10 @@
     <div id="education"></div>
 
     <h2>Performance Reviews</h2>
-    <div class="reviews-wrapper">
-      <div id="reviewContainer" class="review-cards"></div>
-      <div id="reviewDetails" class="review-details">
-        <p class="placeholder">Click on a review card to read its details here.</p>
+    <div class="reviews-layout">
+      <div id="reviewContainer" class="review-list"></div>
+      <div id="reviewDetail" class="review-detail">
+        <p>Select a review on the left to read its details.</p>
       </div>
     </div>
   </div>
@@ -39,20 +39,26 @@
       })
       .then(str => (new DOMParser()).parseFromString(str, "text/xml"))
       .then(data => {
+        // ===== Basic Info =====
         document.getElementById("name").textContent = data.querySelector("name").textContent.trim();
+
         const contact = data.querySelector("contact");
         document.getElementById("contact").innerHTML = `
-          Email: <a href="mailto:${contact.querySelector("email").textContent.trim()}">${contact.querySelector("email").textContent.trim()}</a> | 
+          Email: <a href="mailto:${contact.querySelector("email").textContent.trim()}">${contact.querySelector("email").textContent.trim()}</a> |
           Phone: ${contact.querySelector("phone").textContent.trim()} <br>
-          GitHub: <a href="${contact.querySelector("github").textContent.trim()}" target="_blank">${contact.querySelector("github").textContent.trim()}</a> | 
+          GitHub: <a href="${contact.querySelector("github").textContent.trim()}" target="_blank">${contact.querySelector("github").textContent.trim()}</a> |
           LinkedIn: <a href="${contact.querySelector("linkedin").textContent.trim()}" target="_blank">${contact.querySelector("linkedin").textContent.trim()}</a>
         `;
+
+        // ===== Summary =====
         document.getElementById("summary").textContent = data.querySelector("summary").textContent.trim();
 
+        // ===== Skills =====
         const skills = data.querySelectorAll("skill");
         document.getElementById("skills").innerHTML =
           Array.from(skills).map(s => `<li>${s.textContent.trim()}</li>`).join("");
 
+        // ===== Experience =====
         const jobs = data.querySelectorAll("job");
         let expHTML = "";
         jobs.forEach(job => {
@@ -66,32 +72,36 @@
         });
         document.getElementById("experience").innerHTML = expHTML;
 
+        // ===== Education =====
         const edu = data.querySelector("education");
         document.getElementById("education").innerHTML = `
           <p><strong>${edu.querySelector("degree").textContent.trim()}</strong><br>${edu.querySelector("year").textContent.trim()}</p>
         `;
 
+        // ===== Performance Reviews =====
         const reviewContainer = document.getElementById("reviewContainer");
-        const reviewDetails = document.getElementById("reviewDetails");
+        const reviewDetail = document.getElementById("reviewDetail");
         const reviewNodes = data.querySelectorAll("reviews > review");
 
         reviewNodes.forEach(r => {
+          const [title, ...bodyParts] = r.textContent.split(":");
+          const body = bodyParts.join(":").trim();
+
           const card = document.createElement("div");
           card.className = "review-card";
-          const title = r.textContent.split(":")[0];
-          const text = r.textContent.split(":")[1] ? r.textContent.split(":")[1].trim() : "";
+          card.innerHTML = `<strong>${title.trim()}</strong>`;
 
-          card.innerHTML = `<strong>${title}</strong>`;
           card.addEventListener("click", () => {
             document.querySelectorAll(".review-card").forEach(c => c.classList.remove("active"));
             card.classList.add("active");
-            reviewDetails.innerHTML = `
-              <div class="review-full">
-                <h3>${title}</h3>
-                <p>${text}</p>
-              </div>
+
+            reviewDetail.classList.add("show");
+            reviewDetail.innerHTML = `
+              <h3>${title.trim()}</h3>
+              <p>${body}</p>
             `;
           });
+
           reviewContainer.appendChild(card);
         });
       })
