@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Resume - Hamed Rekabdar</title>
+  <title>Resume - Homed Rekabdar</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -51,12 +51,13 @@
         `;
 
         // ===== Summary =====
-        document.getElementById("summary").textContent = data.querySelector("summary").textContent.trim();
+        // Use innerHTML to preserve <br> if any in XML
+        document.getElementById("summary").innerHTML = data.querySelector("summary").innerHTML.trim();
 
         // ===== Skills =====
         const skills = data.querySelectorAll("skill");
         document.getElementById("skills").innerHTML =
-          Array.from(skills).map(s => `<li>${s.textContent.trim()}</li>`).join("");
+          Array.from(skills).map(s => `<li>${s.innerHTML.trim()}</li>`).join("");
 
         // ===== Experience =====
         const jobs = data.querySelectorAll("job");
@@ -66,7 +67,7 @@
             <h3>${job.querySelector("title").textContent.trim()}</h3>
             <p><em>${job.querySelector("company").textContent.trim()} - ${job.querySelector("location").textContent.trim()} | ${job.querySelector("date").textContent.trim()}</em></p>
             <ul>
-              ${Array.from(job.querySelectorAll("duties > duty")).map(d => `<li>${d.textContent.trim()}</li>`).join("")}
+              ${Array.from(job.querySelectorAll("duties > duty")).map(d => `<li>${d.innerHTML.trim()}</li>`).join("")}
             </ul>
           `;
         });
@@ -84,7 +85,7 @@
         const reviewNodes = data.querySelectorAll("reviews > review");
 
         reviewNodes.forEach(r => {
-          const [title, ...bodyParts] = r.textContent.split(":");
+          const [title, ...bodyParts] = r.innerHTML.split(":"); // innerHTML preserves <br>
           const body = bodyParts.join(":").trim();
 
           const card = document.createElement("div");

@@ -13,53 +13,86 @@ body {
   background: linear-gradient(145deg, #f3f5f7, #e7ebef);
   color: #475569;
   line-height: 1.6;
+  transition: background 0.3s;
+}
+
+body:hover {
+  background: linear-gradient(145deg, #e7ebef, #f3f5f7);
 }
 
 /* =========================
    Headings
 ========================= */
 h1 {
-  font-size: 34px;
-  font-weight: 800;
-  margin-bottom: 8px;
+  font-size: 38px;
+  font-weight: 900;
+  margin-bottom: 12px;
   color: #0b2545;
   letter-spacing: 0.5px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 5px rgba(0,0,0,0.15);
+  position: relative;
+  transition: transform 0.3s;
+}
+
+h1:hover {
+  transform: scale(1.03) rotate(-1deg);
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  margin-top: 8px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+  transition: width 0.3s;
+}
+
+h1:hover::after {
+  width: 120px;
 }
 
 h2 {
-  font-size: 22px;
-  margin-top: 30px;
-  margin-bottom: 12px;
+  font-size: 24px;
+  margin-top: 35px;
+  margin-bottom: 14px;
   border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   color: #0b2545;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 h3 {
-  font-size: 17px;
+  font-size: 18px;
   margin-top: 18px;
-  margin-bottom: 6px;
-  font-weight: 600;
+  margin-bottom: 8px;
+  font-weight: 700;
   color: #1e293b;
+  position: relative;
+}
+
+h3::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #3b82f6;
+  border-radius: 50%;
 }
 
 /* =========================
-   Paragraphs & Lists
+   Paragraphs
 ========================= */
 p {
   margin-bottom: 14px;
   color: #475569;
-}
-
-ul {
-  margin-left: 20px;
-  margin-bottom: 14px;
-}
-
-li {
-  margin-bottom: 8px;
+  line-height: 1.8;
 }
 
 /* =========================
@@ -68,13 +101,31 @@ li {
 a {
   color: #3b82f6;
   text-decoration: none;
-  transition: color 0.2s, transform 0.1s;
+  transition: color 0.2s, transform 0.2s;
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #3b82f6;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+a:hover::after {
+  transform: scaleX(1);
 }
 
 a:hover {
   color: #1356e9;
-  transform: translateY(-1px);
-  text-decoration: underline;
+  transform: translateY(-2px);
 }
 
 /* =========================
@@ -83,6 +134,47 @@ a:hover {
 em {
   font-style: italic;
   color: #6b7280;
+}
+
+/* =========================
+   Modern List Styles
+========================= */
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+li {
+  position: relative;
+  margin-bottom: 14px;
+  padding-left: 28px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s, background 0.3s;
+}
+
+li:hover::before {
+  transform: translateY(-50%) scale(1.5) rotate(20deg);
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+li:hover {
+  transform: translateX(3px);
 }
 
 /* =========================
@@ -99,47 +191,65 @@ em {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .review-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-left: 5px solid #007BFF;
-  padding: 14px 16px;
-  border-radius: 10px;
+  padding: 16px 18px;
+  border-radius: 14px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
   font-weight: 600;
   color: #1e293b;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  position: relative;
 }
 
 .review-card:hover {
-  background: #f8fafc;
-  transform: translateX(4px);
+  background: #f0f6ff;
+  transform: translateX(6px) rotate(-1deg);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
 }
 
 .review-card.active {
-  background: #e0efff;
+  background: #e0f5ff;
   border-left-color: #1356e9;
-  transform: translateX(6px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform: translateX(8px) rotate(0deg) scale(1.02);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
 
-/* Right-side detail panel */
+.review-card::after {
+  content: '📝';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  opacity: 0.4;
+  transition: all 0.3s;
+}
+
+.review-card:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.2) rotate(15deg);
+}
+
 .review-detail {
   flex: 2;
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 20px 24px;
-  min-height: 200px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  border-radius: 14px;
+  padding: 26px 28px;
+  min-height: 220px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
   color: #475569;
   opacity: 0;
   transform: translateY(10px);
-  transition: all 0.4s ease;
+  transition: all 0.5s ease;
+  overflow-y: auto;
 }
 
 .review-detail.show {
@@ -153,8 +263,15 @@ em {
 }
 
 .review-detail p {
-  margin-top: 10px;
-  line-height: 1.6;
+  margin-top: 12px;
+  line-height: 1.8;
+  white-space: pre-line;
+  font-size: 15.5px;
+}
+
+/* Fun hover animation for the review container */
+.reviews-layout:hover .review-card {
+  filter: brightness(1.05);
 }
 
 /* =========================
@@ -166,12 +283,12 @@ em {
   }
 
   .review-detail {
-    margin-top: 10px;
+    margin-top: 14px;
   }
 }
 
 /* =========================
-   Print Styles for PDF
+   Print Styles
 ========================= */
 @media print {
   body {
@@ -197,7 +314,7 @@ em {
   ul, li {
     page-break-inside: avoid;
   }
-  
+
   @page {
     size: Letter;
     margin: 0.75in;
