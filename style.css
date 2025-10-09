@@ -1,23 +1,41 @@
+/* =========================================================
+   CLEAN, MODERN, UNIFIED THEME CSS
+   Palette: Blue-Gray (Cool, Professional)
+   ========================================================= */
+
+/* =========================
+   Global Variables
+========================= */
+:root {
+  --brand: #3b82f6;
+  --brand-light: #60a5fa;
+  --brand-dark: #1356e9;
+  --text-dark: #0b2545;
+  --text-main: #334155;
+  --text-muted: #6b7280;
+  --bg-light: #fafafa;
+  --white: #ffffff;
+  --shadow-sm: 0 4px 10px rgba(0,0,0,0.06);
+  --shadow-md: 0 6px 14px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.07);
+}
+
 /* =========================
    Base / Reset
 ========================= */
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
+  transition: color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 body {
   margin: 2%;
   padding: 1%;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
-  background: linear-gradient(145deg, #f3f5f7, #e7ebef);
-  color: #475569;
+  background: var(--bg-light);
+  color: var(--text-main);
   line-height: 1.6;
-  transition: background 0.3s;
-}
-
-body:hover {
-  background: linear-gradient(145deg, #e7ebef, #f3f5f7);
 }
 
 /* =========================
@@ -27,7 +45,7 @@ h1 {
   font-size: 38px;
   font-weight: 900;
   margin-bottom: 12px;
-  color: #0b2545;
+  color: var(--text-dark);
   letter-spacing: 0.5px;
   text-shadow: 0 1px 5px rgba(0,0,0,0.15);
   position: relative;
@@ -35,7 +53,7 @@ h1 {
 }
 
 h1:hover {
-  transform: scale(1.03) rotate(-1deg);
+  transform: scale(1.02) rotate(-0.2deg);
 }
 
 h1::after {
@@ -43,15 +61,15 @@ h1::after {
   display: block;
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  background: linear-gradient(90deg, var(--brand), var(--brand-light));
   margin-top: 8px;
   border-radius: 2px;
   box-shadow: 0 2px 6px rgba(59,130,246,0.3);
-  transition: width 0.3s;
+  transition: width 0.4s;
 }
 
 h1:hover::after {
-  width: 120px;
+  width: 35%;
 }
 
 h2 {
@@ -60,7 +78,7 @@ h2 {
   margin-bottom: 14px;
   border-bottom: 2px solid #e2e8f0;
   padding-bottom: 6px;
-  color: #0b2545;
+  color: var(--text-dark);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -70,20 +88,8 @@ h3 {
   margin-top: 18px;
   margin-bottom: 8px;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--text-main);
   position: relative;
-}
-
-h3::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  background: #3b82f6;
-  border-radius: 50%;
 }
 
 /* =========================
@@ -91,7 +97,6 @@ h3::before {
 ========================= */
 p {
   margin-bottom: 14px;
-  color: #475569;
   line-height: 1.8;
 }
 
@@ -99,9 +104,8 @@ p {
    Links
 ========================= */
 a {
-  color: #3b82f6;
+  color: var(--brand);
   text-decoration: none;
-  transition: color 0.2s, transform 0.2s;
   position: relative;
 }
 
@@ -112,7 +116,7 @@ a::after {
   bottom: -2px;
   width: 100%;
   height: 2px;
-  background: #3b82f6;
+  background: var(--brand);
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
@@ -124,7 +128,7 @@ a:hover::after {
 }
 
 a:hover {
-  color: #1356e9;
+  color: var(--brand-dark);
   transform: translateY(-2px);
 }
 
@@ -133,7 +137,7 @@ a:hover {
 ========================= */
 em {
   font-style: italic;
-  color: #6b7280;
+  color: var(--text-muted);
 }
 
 /* =========================
@@ -151,7 +155,6 @@ li {
   margin-bottom: 14px;
   padding-left: 28px;
   font-weight: 500;
-  transition: all 0.25s ease;
 }
 
 li::before {
@@ -160,21 +163,21 @@ li::before {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #60a5fa);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, var(--brand), var(--brand-light));
+  box-shadow: var(--shadow-sm);
   transition: transform 0.3s, background 0.3s;
 }
 
 li:hover::before {
-  transform: translateY(-50%) scale(1.5) rotate(20deg);
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  transform: translateY(-50%) scale(1.4);
+  background: linear-gradient(135deg, var(--brand-dark), var(--brand));
 }
 
 li:hover {
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 /* =========================
@@ -195,30 +198,29 @@ li:hover {
 }
 
 .review-card {
-  background: #ffffff;
+  background: var(--white);
   border: 1px solid #e2e8f0;
-  border-left: 5px solid #007BFF;
+  border-left: 5px solid var(--brand);
   padding: 16px 18px;
   border-radius: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
   font-weight: 600;
-  color: #1e293b;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
   position: relative;
 }
 
 .review-card:hover {
   background: #f0f6ff;
-  transform: translateX(6px) rotate(-1deg);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  transform: translateX(6px);
+  box-shadow: var(--shadow-md);
 }
 
 .review-card.active {
   background: #e0f5ff;
-  border-left-color: #1356e9;
-  transform: translateX(8px) rotate(0deg) scale(1.02);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  border-left-color: var(--brand-dark);
+  transform: translateX(8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
 }
 
 .review-card::after {
@@ -239,13 +241,13 @@ li:hover {
 
 .review-detail {
   flex: 2;
-  background: #ffffff;
+  background: var(--white);
   border: 1px solid #e2e8f0;
   border-radius: 14px;
   padding: 26px 28px;
   min-height: 220px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
-  color: #475569;
+  box-shadow: var(--shadow-lg);
+  color: var(--text-main);
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.5s ease;
@@ -258,7 +260,7 @@ li:hover {
 }
 
 .review-detail h3 {
-  color: #0b2545;
+  color: var(--text-dark);
   margin-top: 0;
 }
 
@@ -267,11 +269,6 @@ li:hover {
   line-height: 1.8;
   white-space: pre-line;
   font-size: 15.5px;
-}
-
-/* Fun hover animation for the review container */
-.reviews-layout:hover .review-card {
-  filter: brightness(1.05);
 }
 
 /* =========================
