@@ -2,25 +2,23 @@
 <resume>
   <name>Homed Rekabdar</name>
   <contact>
-    <email>homed.rekabdar@gmail.com</email>
+    <email>Homed.Rekabdar97@gmail.com</email>
     <phone>(470) 965-1875</phone>
     <github>https://github.com/HomedRe</github>
     <linkedin>https://www.linkedin.com/in/homedrekabdar</linkedin>
   </contact>
 
   <summary>
-    Technical Support Specialist with over 2 years of experience in troubleshooting, 
-    client support, and application setup. Pioneered the installation of new software 
-    versions and collaborated with the development team to resolve issues during and 
-    after deployment. Skilled in SQL for data analysis, issue resolution, and root 
-    cause analysis. Successfully closed nearly 2,000 support cases while consistently 
-    exceeding performance expectations through top adherence, high call resolution 
-    rates, and strong evaluation scores. Seeking to leverage my technical expertise 
-    and programming background to contribute effectively as an Application Support Engineer.
+    Technical Support Specialist with over 2 years of experience in troubleshooting, client support, and software deployment. 
+    Skilled in SQL, scripting, and data analysis for diagnostics and root cause resolution. Proven track record of collaborating with 
+    development teams to implement new software versions and resolve complex issues post-release. Closed nearly 2,000 support cases 
+    with top adherence and customer satisfaction scores. Seeking to leverage my technical expertise and programming background to 
+    contribute as an Application Support Engineer and progress into an Application Engineer role.
   </summary>
 
   <skills>
-    <skill>Support and Troubleshooting: Tier 1 and 2 support, problem-solving, working on unknown/new tasks (adaptability).</skill>
+    <skill>Technical Support and Troubleshooting: Tier 1 and 2 support.</skill>
+    <skill>Problem-solving, working on unknown/new tasks (adaptability).</skill>
     <skill>Database: SQL, SQL Server (Sybase, MSSQL).</skill>
     <skill>Programming and Web: Basic XML, HTML, CSS, JavaScript; exposure to C, C++, C#, Java.</skill>
     <skill>Documentation: Knowledge base creation, internal resources.</skill>
@@ -95,3 +93,4 @@
 
 
 </resume>
+
